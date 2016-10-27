@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Usuario;
-use app\models\UsuarioSearch;
+use app\models\Horario;
+use app\models\HorarioSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * UsuarioController implements the CRUD actions for Usuario model.
+ * HorarioController implements the CRUD actions for Horario model.
  */
-class UsuarioController extends Controller
+class HorarioController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Lists all Usuario models.
+     * Lists all Horario models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new UsuarioSearch();
+        $searchModel = new HorarioSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Displays a single Usuario model.
+     * Displays a single Horario model.
      * @param integer $id
      * @return mixed
      */
@@ -57,16 +57,16 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Creates a new Usuario model.
+     * Creates a new Horario model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Usuario();
+        $model = new Horario();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_usuario]);
+            return $this->redirect(['view', 'id' => $model->id_horario]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -75,7 +75,7 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Updates an existing Usuario model.
+     * Updates an existing Horario model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -85,7 +85,7 @@ class UsuarioController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_usuario]);
+            return $this->redirect(['view', 'id' => $model->id_horario]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -94,7 +94,7 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Deletes an existing Usuario model.
+     * Deletes an existing Horario model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -105,26 +105,17 @@ class UsuarioController extends Controller
 
         return $this->redirect(['index']);
     }
-    public function actionBuscar(){
-        $searchModel = new UsuarioSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('delete', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
 
     /**
-     * Finds the Usuario model based on its primary key value.
+     * Finds the Horario model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Usuario the loaded model
+     * @return Horario the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Usuario::findOne($id)) !== null) {
+        if (($model = Horario::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
